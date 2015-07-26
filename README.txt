@@ -1,2 +1,2 @@
 It is a simple voice calculator in VoiceXml.
-It was tested and debuged at Voxeo.
+It was tested and debugged at Voxeo.
