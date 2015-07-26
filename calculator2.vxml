@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1">
+<!--
+<noinput>
+	I'm sorry. I did not hear anything.
+	<reprompt/>
+</noinput>
+<nomatch>
+	I did not get that.
+	<reprompt/>
+</nomatch>
+-->
+
+<meta name="maintainer" content="YOUREMAILADDRESS@HERE.com"/>
+<form>
+	<block>
+		This is John's calculator.
+	</block>
+	<field name="op">
+		<prompt>
+			Choose add, subtract, multiply, or divide.
+		</prompt>
+		<grammar type="application/x-nuance-gsl">
+		[add subtract multiply divide]
+		</grammar>
+		<help>
+		Please say what you want to do. <reprompt/>
+		</help>
+
+		<filled>
+		<prompt>
+			Okay, let's <value expr="op"/> two numbers.
+		</prompt>
+		</filled>
+	</field>
+
+	<field name="a" type="number">
+		<prompt>
+			What is the first number?
+		</prompt>		
+		<filled>
+			<prompt> <value expr="a"/> </prompt>
+		</filled>
+	</field>
+
+	<var name="result"/>
+	<field name="b" type="number">
+		<prompt> And the second number? </prompt>
+		
+		<filled>
+			<prompt> <value expr="b"/> Okay. </prompt>
+			<if cond="op=='add'">
+				<assign name="result" expr="Number(a) + Number(b)"/>
+				<prompt>
+				<value expr="a"/> plus <value expr="b"/>
+					equals <value expr="result"/>
+				</prompt>
+			<elseif cond="op=='subtract'"/>
+				<assign name="result" expr="a - b"/>
+				<prompt>
+				<value expr="a"/> minus <value expr="b"/>
+					equals <value expr="result"/>
+				</prompt>
+			<elseif cond="op=='multiply'"/>
+				<assign name="result" expr="a * b"/>
+				<prompt>
+				<value expr="a"/> times <value expr="b"/>
+				equals <value expr="result"/>
+				</prompt>
+			<else/>
+				<assign name="result" expr="a / b"/>
+				<prompt>
+				<value expr="a"/> divided by <value expr="b"/>
+				equals <value expr="result"/>
+				</prompt>
+			</if>
+			<clear/>
+		</filled>
+	</field>
+</form>
+</vxml>
